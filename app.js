@@ -615,43 +615,43 @@ function hideLoading() {
 const YT_GENRES = {
   'future-house': {
     label: 'Future House — NCS',
-    embedSrc: 'https://www.youtube.com/embed/videoseries?list=UU_aEa8K-EOJ3D6gOs7HcyNg&autoplay=0&rel=0&modestbranding=1',
-    note: '▶ Future House Mix — NoCopyrightSounds (NCS)'
+    embedSrc: 'https://www.youtube.com/embed/videoseries?list=PLRBp0Fe2GpgnQfsrvd9ZQQOz4mneH_q8S&autoplay=1&rel=0&modestbranding=1',
+    note: '▶ NCS : Top 50 Future House Songs'
   },
   'deep-house': {
-    label: 'Deep House — NCS',
-    embedSrc: 'https://www.youtube.com/embed/videoseries?list=UU_aEa8K-EOJ3D6gOs7HcyNg&autoplay=0&rel=0&modestbranding=1',
-    note: '▶ Deep House Mix — NoCopyrightSounds (NCS)'
+    label: 'Deep House',
+    embedSrc: 'https://www.youtube.com/embed/videoseries?list=PLRBp0Fe2GpgmoBCN3MTdwg4EiJmgxYy6e&autoplay=1&rel=0&modestbranding=1',
+    note: '▶ NCS : Top 50 House Songs'
   },
   'edm-circuit': {
-    label: 'EDM Circuits — NCS',
-    embedSrc: 'https://www.youtube.com/embed/videoseries?list=UU_aEa8K-EOJ3D6gOs7HcyNg&autoplay=0&rel=0&modestbranding=1',
-    note: '▶ EDM Workout Mix — NoCopyrightSounds (NCS)'
+    label: 'EDM Circuits / Workout',
+    embedSrc: 'https://www.youtube.com/embed/videoseries?list=PLC1og_v3eb4jNFEE9iuFNdLCQmYhZRNvt&autoplay=1&rel=0&modestbranding=1',
+    note: '▶ Workout Music — Trap Nation'
   },
   'hiphop': {
-    label: 'Hip-hop libre — NCS',
-    embedSrc: 'https://www.youtube.com/embed/videoseries?list=UU_aEa8K-EOJ3D6gOs7HcyNg&autoplay=0&rel=0&modestbranding=1',
-    note: '▶ Hip-hop / Trap — NoCopyrightSounds (NCS)'
+    label: 'Hip-hop / Trap',
+    embedSrc: 'https://www.youtube.com/embed/videoseries?list=PLRBp0Fe2Gpgldp6wTkEHOmuk_l1_8OCgw&autoplay=1&rel=0&modestbranding=1',
+    note: '▶ NCS : Top 50 Trap Songs'
   },
   'warmup': {
     label: 'Échauffement',
-    embedSrc: 'https://www.youtube.com/embed/videoseries?list=UU_aEa8K-EOJ3D6gOs7HcyNg&autoplay=0&rel=0&modestbranding=1',
-    note: '▶ Warmup Mix — NoCopyrightSounds (NCS)'
+    embedSrc: 'https://www.youtube.com/embed/videoseries?list=PLyDNc-mLpTPYZtyW55w4Zy7HJnAPnu8SR&autoplay=1&rel=0&modestbranding=1',
+    note: '▶ Happy Music — Vlog No Copyright Music'
   },
   'danse': {
     label: 'Danse / Expression',
-    embedSrc: 'https://www.youtube.com/embed/videoseries?list=UU_aEa8K-EOJ3D6gOs7HcyNg&autoplay=0&rel=0&modestbranding=1',
-    note: '▶ Dance Mix — NoCopyrightSounds (NCS)'
+    embedSrc: 'https://www.youtube.com/embed/videoseries?list=PLyDNc-mLpTPYlda_wQd3tnP2joefEB_QF&autoplay=1&rel=0&modestbranding=1',
+    note: '▶ Dance & Electronic — Vlog No Copyright Music'
   },
   'chill': {
-    label: 'Chill / Détente',
-    embedSrc: 'https://www.youtube.com/embed/videoseries?list=UU_aEa8K-EOJ3D6gOs7HcyNg&autoplay=0&rel=0&modestbranding=1',
-    note: '▶ Chill / Lo-fi Mix — NoCopyrightSounds (NCS)'
+    label: 'Chill / Lo-fi',
+    embedSrc: 'https://www.youtube.com/embed/videoseries?list=PLRBp0Fe2GpgnRZpKULnyDQv9e_q41M6St&autoplay=1&rel=0&modestbranding=1',
+    note: '▶ NCS : Background Music — Study & Chill'
   },
   'classique': {
-    label: 'Classique — Musopen',
-    embedSrc: 'https://www.youtube.com/embed/videoseries?list=UU_aEa8K-EOJ3D6gOs7HcyNg&autoplay=0&rel=0&modestbranding=1',
-    note: '▶ Musique Classique Libre de Droits'
+    label: 'Classique',
+    embedSrc: 'https://www.youtube.com/embed/videoseries?list=PLcGkkXtask_eI44NtdwwcJ2Zxh1miU9Qh&autoplay=1&rel=0&modestbranding=1',
+    note: '▶ Classical Music — HalidonMusic'
   }
 };
 
