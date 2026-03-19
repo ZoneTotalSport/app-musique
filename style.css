@@ -219,6 +219,37 @@ nav a:hover {
   background: rgba(224,64,251,0.1);
 }
 
+nav a.cross-app-link {
+  color: var(--primary);
+  font-weight: 600;
+  border: 1px solid rgba(224,64,251,0.3);
+  background: rgba(224,64,251,0.08);
+}
+
+nav a.cross-app-link:hover {
+  background: rgba(224,64,251,0.2);
+  border-color: var(--primary);
+}
+
+.nav-separator {
+  color: var(--text-muted);
+  opacity: 0.3;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  user-select: none;
+}
+
+.footer-links .cross-app-link {
+  color: var(--primary) !important;
+  border: 1px solid rgba(224,64,251,0.3);
+}
+
+.footer-links .nav-separator {
+  display: inline;
+  padding: 0 6px;
+}
+
 /* ---- Hero ---- */
 .hero {
   min-height: 100vh;
