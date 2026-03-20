@@ -1593,3 +1593,300 @@ footer {
   }
 }
 
+/* ============================================
+   FAVORIS — Bouton etoile sur chaque carte
+   ============================================ */
+.track-card {
+  position: relative;
+}
+.track-fav-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.35rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: var(--transition);
+  z-index: 2;
+  line-height: 1;
+  padding: 4px;
+  border-radius: 6px;
+}
+.track-fav-btn:hover {
+  color: var(--warm);
+  transform: scale(1.2);
+  background: rgba(255,171,64,0.1);
+}
+.track-fav-btn.is-fav {
+  color: var(--warm);
+  text-shadow: 0 0 10px rgba(255,171,64,0.5);
+}
+
+.cat-pill-fav {
+  border-color: rgba(255,171,64,0.3) !important;
+  color: var(--warm) !important;
+}
+.cat-pill-fav.active {
+  background: rgba(255,171,64,0.15) !important;
+  border-color: var(--warm) !important;
+}
+
+/* ============================================
+   PARTAGE — Bouton et actions sur chaque carte
+   ============================================ */
+.track-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+  padding-top: 6px;
+}
+.track-share-btn {
+  background: rgba(124,77,255,0.08);
+  border: 1px solid rgba(124,77,255,0.2);
+  color: var(--secondary);
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.track-share-btn:hover {
+  background: rgba(124,77,255,0.2);
+  border-color: var(--secondary);
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+/* Deep link highlight */
+.track-highlight {
+  animation: highlightPulse 3s ease-out forwards;
+}
+@keyframes highlightPulse {
+  0%   { box-shadow: 0 0 0 4px var(--primary), 0 0 30px rgba(224,64,251,0.6); border-color: var(--primary); }
+  50%  { box-shadow: 0 0 0 4px var(--primary), 0 0 20px rgba(224,64,251,0.3); border-color: var(--primary); }
+  100% { box-shadow: none; border-color: var(--card-border); }
+}
+
+/* ============================================
+   TOAST NOTIFICATION
+   ============================================ */
+#toast-notification {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: rgba(18, 0, 42, 0.95);
+  color: var(--accent);
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  border: 1px solid rgba(0,229,255,0.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 20px rgba(0,229,255,0.15);
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  white-space: nowrap;
+}
+#toast-notification.toast-show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+#toast-notification.toast-hide {
+  opacity: 0;
+  transform: translateX(-50%) translateY(80px);
+}
+
+/* ============================================
+   BOUTON IMPRIMER
+   ============================================ */
+.btn-imprimer {
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(0,229,255,0.3);
+  background: rgba(0,229,255,0.08);
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  white-space: nowrap;
+}
+.btn-imprimer:hover {
+  background: rgba(0,229,255,0.18);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0,229,255,0.2);
+}
+
+/* ============================================
+   IMPRESSION — @media print
+   ============================================ */
+@media print {
+  /* Masquer tout sauf la banque */
+  #bgCanvas,
+  #loading,
+  header,
+  .hero,
+  #youtube-section,
+  #bpm-section,
+  #sources-section,
+  #legal-section,
+  #activites-section,
+  #saisons-section,
+  footer,
+  .section-divider,
+  .banque-pagination,
+  .banque-cat-pills,
+  .btn-imprimer,
+  .track-fav-btn,
+  .track-share-btn,
+  .track-actions,
+  #toast-notification {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    font-size: 11pt;
+    line-height: 1.4;
+  }
+
+  #app {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  #app.hidden {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  #banque-section {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .section-header {
+    margin-bottom: 16px !important;
+  }
+
+  .section-title {
+    background: none !important;
+    -webkit-text-fill-color: #111 !important;
+    color: #111 !important;
+    font-size: 16pt !important;
+    border-left-color: #333 !important;
+  }
+
+  .section-desc {
+    color: #555 !important;
+    font-size: 9pt !important;
+  }
+
+  .section-label {
+    background: none !important;
+    border: 1px solid #999 !important;
+    color: #555 !important;
+  }
+
+  .banque-filters {
+    margin-bottom: 12px !important;
+  }
+
+  .banque-search,
+  .filter-select {
+    border: 1px solid #ccc !important;
+    background: #fff !important;
+    color: #111 !important;
+    font-size: 9pt !important;
+    padding: 4px 8px !important;
+  }
+
+  .filter-count {
+    color: #333 !important;
+  }
+  .filter-count strong {
+    color: #111 !important;
+  }
+
+  .banque-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  .track-card {
+    background: #fff !important;
+    border: 1px solid #ddd !important;
+    padding: 10px !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+    transform: none !important;
+    page-break-inside: avoid;
+  }
+
+  .track-titre {
+    color: #111 !important;
+    font-size: 10pt !important;
+  }
+  .track-artiste {
+    color: #444 !important;
+    font-size: 8pt !important;
+  }
+  .track-bpm {
+    background: none !important;
+    border: 1px solid #999 !important;
+    color: #333 !important;
+    font-size: 8pt !important;
+  }
+  .track-genre {
+    background: none !important;
+    border: 1px solid #999 !important;
+    color: #333 !important;
+    font-size: 8pt !important;
+  }
+  .track-cat {
+    color: #444 !important;
+    font-size: 8pt !important;
+  }
+  .track-footer {
+    border-top-color: #eee !important;
+  }
+  .track-source {
+    color: #555 !important;
+    font-size: 8pt !important;
+  }
+  .track-licence {
+    background: none !important;
+    color: #333 !important;
+    border: 1px solid #aaa !important;
+    font-size: 7pt !important;
+  }
+  .track-desc,
+  .track-usage {
+    color: #555 !important;
+    font-size: 8pt !important;
+  }
+
+  /* En-tete d'impression */
+  #banque-section::before {
+    content: "Musiques Libres EPS - Zone Total Sport - musique.zonetotalsport.ca";
+    display: block;
+    text-align: center;
+    font-size: 8pt;
+    color: #999;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+  }
+}
+

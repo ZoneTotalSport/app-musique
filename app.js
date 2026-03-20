@@ -868,6 +868,110 @@ let filteredTracks = [];
 let banquePage = 0;
 const TRACKS_PER_PAGE = 30;
 let activeCategory = null;
+let showFavorisOnly = false;
+
+// ---- FAVORIS (localStorage) ----
+function getFavoris() {
+  try {
+    return JSON.parse(localStorage.getItem('favoris-musique')) || [];
+  } catch { return []; }
+}
+function setFavoris(arr) {
+  localStorage.setItem('favoris-musique', JSON.stringify(arr));
+}
+function toggleFavori(trackId) {
+  const favs = getFavoris();
+  const idx = favs.indexOf(trackId);
+  if (idx > -1) favs.splice(idx, 1);
+  else favs.push(trackId);
+  setFavoris(favs);
+  renderBanque();
+  renderCategoryPills();
+}
+function toggleFavorisFilter() {
+  showFavorisOnly = !showFavorisOnly;
+  filterBanque();
+  renderCategoryPills();
+}
+
+// ---- PARTAGE (deep link) ----
+function partagerPiste(trackId) {
+  const url = `https://musique.zonetotalsport.ca/?id=${encodeURIComponent(trackId)}`;
+  navigator.clipboard.writeText(url).then(() => {
+    showToast('Lien copi\u00e9 !');
+  }).catch(() => {
+    // Fallback
+    const tmp = document.createElement('textarea');
+    tmp.value = url;
+    document.body.appendChild(tmp);
+    tmp.select();
+    document.execCommand('copy');
+    document.body.removeChild(tmp);
+    showToast('Lien copi\u00e9 !');
+  });
+}
+
+function showToast(msg) {
+  let toast = document.getElementById('toast-notification');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toast-notification';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.classList.remove('toast-hide');
+  toast.classList.add('toast-show');
+  setTimeout(() => {
+    toast.classList.remove('toast-show');
+    toast.classList.add('toast-hide');
+  }, 2200);
+}
+
+function checkDeepLink() {
+  const params = new URLSearchParams(window.location.search);
+  const trackId = params.get('id');
+  if (!trackId) return;
+
+  // Find the track and navigate to its page
+  const trackIndex = filteredTracks.findIndex(t => t.id === trackId);
+  if (trackIndex === -1) {
+    // Try in allTracks, reset filters
+    const allIdx = allTracks.findIndex(t => t.id === trackId);
+    if (allIdx === -1) return;
+    // Reset filters to show all
+    activeCategory = null;
+    showFavorisOnly = false;
+    document.getElementById('banque-search').value = '';
+    document.getElementById('banque-categorie').value = '';
+    document.getElementById('banque-genre').value = '';
+    document.getElementById('banque-source').value = '';
+    filteredTracks = [...allTracks];
+    const newIdx = filteredTracks.findIndex(t => t.id === trackId);
+    banquePage = Math.floor(newIdx / TRACKS_PER_PAGE);
+  } else {
+    banquePage = Math.floor(trackIndex / TRACKS_PER_PAGE);
+  }
+
+  renderBanque();
+  renderCategoryPills();
+
+  // Scroll to the banque section then highlight the card
+  setTimeout(() => {
+    const card = document.querySelector(`[data-track-id="${CSS.escape(trackId)}"]`);
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      card.classList.add('track-highlight');
+      setTimeout(() => card.classList.remove('track-highlight'), 3000);
+    } else {
+      document.getElementById('banque-section')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, 600);
+}
+
+// ---- IMPRESSION ----
+function imprimerPistes() {
+  window.print();
+}
 
 async function loadBanqueDePistes() {
   const results = await Promise.allSettled(
@@ -897,6 +1001,7 @@ async function loadBanqueDePistes() {
   renderCategoryPills();
   renderBanque();
   setupBanqueSearch();
+  checkDeepLink();
 }
 
 function populateBanqueFilters() {
@@ -946,12 +1051,16 @@ function renderCategoryPills() {
 
   const cats = Object.entries(catCounts).sort((a, b) => b[1] - a[1]);
 
+  const favCount = getFavoris().length;
   container.innerHTML = `
-    <button class="cat-pill ${!activeCategory ? 'active' : ''}" onclick="setCategoryFilter(null)">
+    <button class="cat-pill ${!activeCategory && !showFavorisOnly ? 'active' : ''}" onclick="showFavorisOnly=false;setCategoryFilter(null)">
       Toutes (${allTracks.length})
     </button>
+    <button class="cat-pill cat-pill-fav ${showFavorisOnly ? 'active' : ''}" onclick="toggleFavorisFilter()">
+      \u2b50 Favoris (${favCount})
+    </button>
     ${cats.map(([cat, count]) => `
-      <button class="cat-pill ${activeCategory === cat ? 'active' : ''}" onclick="setCategoryFilter('${escapeAttr(cat)}')">
+      <button class="cat-pill ${activeCategory === cat && !showFavorisOnly ? 'active' : ''}" onclick="showFavorisOnly=false;setCategoryFilter('${escapeAttr(cat)}')">
         ${escapeHtml(cat)} (${count})
       </button>
     `).join('')}
@@ -983,7 +1092,10 @@ function filterBanque() {
   const genre = document.getElementById('banque-genre')?.value || '';
   const source = document.getElementById('banque-source')?.value || '';
 
+  const favs = showFavorisOnly ? getFavoris() : null;
+
   filteredTracks = allTracks.filter(t => {
+    if (showFavorisOnly && !favs.includes(t.id)) return false;
     if (categorie && t.categorie !== categorie) return false;
     if (genre && t.genre !== genre) return false;
     if (source && t.source !== source) return false;
@@ -1024,11 +1136,15 @@ function renderBanque() {
   const end = Math.min(start + TRACKS_PER_PAGE, filteredTracks.length);
   const page = filteredTracks.slice(start, end);
 
+  const currentFavs = getFavoris();
+
   grid.innerHTML = page.map(t => {
     const bpm = t.bpm_estime || '';
     const isLocal = t.local;
+    const isFav = currentFavs.includes(t.id);
     return `
-      <div class="track-card">
+      <div class="track-card" data-track-id="${escapeAttr(t.id)}">
+        <button class="track-fav-btn ${isFav ? 'is-fav' : ''}" onclick="toggleFavori('${escapeAttr(t.id)}')" title="${isFav ? 'Retirer des favoris' : 'Ajouter aux favoris'}" aria-label="Favori">${isFav ? '\u2605' : '\u2606'}</button>
         <div class="track-card-header">
           <div class="track-titre">${escapeHtml(t.titre)}</div>
           <div class="track-artiste">${escapeHtml(t.artiste || '')}</div>
@@ -1039,11 +1155,14 @@ function renderBanque() {
         </div>
         <div class="track-cat">${escapeHtml(t.categorie || '')}</div>
         <div class="track-footer">
-          <span class="track-source">${isLocal ? '📁' : '🌐'} ${escapeHtml(t.source || '')}</span>
+          <span class="track-source">${isLocal ? '\ud83d\udcc1' : '\ud83c\udf10'} ${escapeHtml(t.source || '')}</span>
           <span class="track-licence">${escapeHtml(t.licence || '')}</span>
         </div>
         ${t.description ? `<div class="track-desc">${escapeHtml(t.description)}</div>` : ''}
-        ${t.usage_eps ? `<div class="track-usage">🎯 ${escapeHtml(t.usage_eps)}</div>` : ''}
+        ${t.usage_eps ? `<div class="track-usage">\ud83c\udfaf ${escapeHtml(t.usage_eps)}</div>` : ''}
+        <div class="track-actions">
+          <button class="track-share-btn" onclick="partagerPiste('${escapeAttr(t.id)}')" title="Copier le lien de partage">\ud83d\udd17 Partager</button>
+        </div>
       </div>
     `;
   }).join('');
