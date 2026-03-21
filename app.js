@@ -243,12 +243,33 @@ function renderSearchLinks() {
   const container = document.getElementById('search-links');
   if (!container) return;
 
-  container.innerHTML = SEARCH_LINKS.map(s => `
-    <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(s.query)}"
-       target="_blank" rel="noopener" class="search-link">
+  container.innerHTML = SEARCH_LINKS.map((s, i) => `
+    <button class="search-link" onclick="openYTSearch(${i})">
       <span>${s.icon}</span> ${s.label}
-    </a>
+    </button>
   `).join('');
+}
+
+function openYTSearch(idx) {
+  const s = SEARCH_LINKS[idx];
+  if (!s) return;
+  const url = `https://www.youtube.com/results?search_query=${encodeURIComponent(s.query)}`;
+  window.open(url, 'ytSearch', 'width=1000,height=700,scrollbars=yes,resizable=yes');
+  showToast('🔍 Trouve une vidéo, copie son URL et colle-la dans le lecteur ci-haut!');
+}
+
+function showToast(msg) {
+  let toast = document.getElementById('yt-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'yt-toast';
+    toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(0,229,255,0.95);color:#111;padding:14px 28px;border-radius:12px;font-family:Fredoka,sans-serif;font-weight:700;font-size:0.95rem;z-index:9999;opacity:0;transition:opacity 0.3s;max-width:90vw;text-align:center;';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.style.opacity = '1';
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => toast.style.opacity = '0', 5000);
 }
 
 // ---- MA PLAYLIST ----
