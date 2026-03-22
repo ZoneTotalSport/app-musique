@@ -32,7 +32,7 @@ body {
   inset: 0;
   z-index: 0;
   background: url('img/dj-roots-bg.png') center/cover no-repeat;
-  opacity: 0.25;
+  opacity: 0.40;
   pointer-events: none;
 }
 
