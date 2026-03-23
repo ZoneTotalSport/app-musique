@@ -149,6 +149,7 @@ const SEARCH_LINKS = [
 
 // ---- INIT ----
 document.addEventListener('DOMContentLoaded', () => {
+  if (typeof initI18n === 'function') initI18n();
   renderPlaylists();
   renderSearchLinks();
   loadMyPlaylist();
@@ -182,7 +183,7 @@ function playPlaylist(playlistId, label) {
   if (iframe) {
     iframe.src = `https://www.youtube.com/embed/videoseries?list=${playlistId}&autoplay=1&rel=0&modestbranding=1`;
   }
-  if (labelEl) labelEl.textContent = `▶ ${label}`;
+  if (labelEl) labelEl.textContent = `${typeof t==='function'?t('player_now_playing'):'\u25b6'} ${label}`;
   document.getElementById('player-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
@@ -192,7 +193,7 @@ function playVideo(videoId, label) {
   if (iframe) {
     iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
   }
-  if (labelEl) labelEl.textContent = `▶ ${label || 'Lecture en cours'}`;
+  if (labelEl) labelEl.textContent = `${typeof t==='function'?t('player_now_playing'):'\u25b6'} ${label || (typeof t==='function'?t('player_playing'):'Lecture en cours')}`;
   document.getElementById('player-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
@@ -203,18 +204,18 @@ function loadCustomURL() {
   const result = extractYouTubeId(input.value.trim());
   if (!result) {
     input.style.borderColor = '#ff8a80';
-    input.placeholder = '⚠️ URL invalide';
+    input.placeholder = typeof t==='function'?t('url_invalid'):'\u26a0\ufe0f URL invalide';
     setTimeout(() => {
       input.style.borderColor = '';
-      input.placeholder = 'https://youtube.com/watch?v=...';
+      input.placeholder = typeof t==='function'?t('url_placeholder'):'https://youtube.com/watch?v=...';
     }, 2000);
     return;
   }
 
   if (result.type === 'playlist') {
-    playPlaylist(result.id, 'Playlist personnalisée');
+    playPlaylist(result.id, typeof t==='function'?t('player_custom_playlist'):'Playlist personnalisée');
   } else {
-    playVideo(result.id, 'Lecture personnalisée');
+    playVideo(result.id, typeof t==='function'?t('player_custom_video'):'Lecture personnalisée');
   }
   input.value = '';
 }
@@ -255,7 +256,7 @@ function openYTSearch(idx) {
   if (!s) return;
   const url = `https://www.youtube.com/results?search_query=${encodeURIComponent(s.query)}`;
   window.open(url, 'ytSearch', 'width=1000,height=700,scrollbars=yes,resizable=yes');
-  showToast('🔍 Trouve une vidéo, copie son URL et colle-la dans le lecteur ci-haut!');
+  showToast(typeof t==='function'?t('search_toast'):'\ud83d\udd0d Trouve une vidéo, copie son URL et colle-la dans le lecteur ci-haut!');
 }
 
 function showToast(msg) {
@@ -301,7 +302,7 @@ function addToMyPlaylist() {
   myPlaylist.push({
     id: result.id,
     type: result.type,
-    title: titleInput?.value.trim() || `Piste ${myPlaylist.length + 1}`,
+    title: titleInput?.value.trim() || `${typeof t==='function'?t('my_playlist_track'):'Piste'} ${myPlaylist.length + 1}`,
     url: urlInput.value.trim()
   });
 
@@ -332,7 +333,7 @@ function renderMyPlaylist() {
   if (!container) return;
 
   if (myPlaylist.length === 0) {
-    container.innerHTML = '<p style="color:var(--text-muted);font-size:0.85rem;">Aucune piste sauvegardée. Ajoute des URLs YouTube ci-dessus.</p>';
+    container.innerHTML = `<p style="color:var(--text-muted);font-size:0.85rem;">${typeof t==='function'?t('my_playlist_empty'):'Aucune piste sauvegardée. Ajoute des URLs YouTube ci-dessus.'}</p>`;
     return;
   }
 
@@ -340,7 +341,7 @@ function renderMyPlaylist() {
     <div class="my-track">
       <span style="font-size:1.1rem;">${t.type === 'playlist' ? '📋' : '🎵'}</span>
       <div class="my-track-title">${escapeHtml(t.title)}</div>
-      <button class="my-track-btn" onclick="playFromMyPlaylist(${i})">▶ Jouer</button>
+      <button class="my-track-btn" onclick="playFromMyPlaylist(${i})">${typeof t==='function'?t('my_playlist_play'):'\u25b6 Jouer'}</button>
       <button class="my-track-btn delete" onclick="removeFromPlaylist(${i})">✕</button>
     </div>
   `).join('');

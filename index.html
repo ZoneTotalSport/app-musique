@@ -24,8 +24,8 @@
     <header>
       <div class="header-inner">
         <div class="logo">
-          <div class="logo-title">🎵 ZONE TOTAL SPORT</div>
-          <div class="logo-sub">MUSIQUES POUR L'ÉPS</div>
+          <div class="logo-title" data-t="header_title">🎵 ZONE TOTAL SPORT</div>
+          <div class="logo-sub" data-t="header_sub">MUSIQUES POUR L'ÉPS</div>
         </div>
       </div>
     </header>
@@ -34,11 +34,11 @@
     <section class="hero">
       <div class="hero-title-wrap">
         <img src="img/bucheron-musique.png" alt="Mr Root écoute de la musique" class="hero-mascot-dj" />
-        <h1 class="hero-title">DJ ZONE TOTAL SPORT</h1>
+        <h1 class="hero-title" data-t="hero_title">DJ ZONE TOTAL SPORT</h1>
       </div>
       <p class="hero-subtitle">
-        Playlists YouTube pour tes cours d'ÉPS<br/>
-        <strong>Sélectionne un mood · Colle ton URL · Lance la musique</strong>
+        <span data-t="hero_subtitle">Playlists YouTube pour tes cours d'ÉPS</span><br/>
+        <strong data-t="hero_subtitle_strong">Sélectionne un mood · Colle ton URL · Lance la musique</strong>
       </p>
     </section>
 
@@ -50,7 +50,7 @@
 
         <!-- IFRAME -->
         <div class="player-wrap">
-          <div class="player-label" id="now-playing">▶ Sélectionne une playlist ci-dessous</div>
+          <div class="player-label" id="now-playing" data-t="player_default">▶ Sélectionne une playlist ci-dessous</div>
           <div class="iframe-container">
             <iframe
               id="yt-iframe"
@@ -65,12 +65,12 @@
 
         <!-- URL CUSTOM -->
         <div class="url-box">
-          <div class="url-label">🔗 Colle n'importe quelle URL YouTube</div>
+          <div class="url-label" data-t="url_label">🔗 Colle n'importe quelle URL YouTube</div>
           <div class="url-input-wrap">
-            <input type="text" id="url-input" class="url-input" placeholder="https://youtube.com/watch?v=..." />
-            <button class="url-btn" onclick="loadCustomURL()">▶ JOUER</button>
+            <input type="text" id="url-input" class="url-input" data-t-placeholder="url_placeholder" placeholder="https://youtube.com/watch?v=..." />
+            <button class="url-btn" onclick="loadCustomURL()" data-t="url_btn">▶ JOUER</button>
           </div>
-          <div class="url-hint">Vidéos, playlists, mix — tout fonctionne</div>
+          <div class="url-hint" data-t="url_hint">Vidéos, playlists, mix — tout fonctionne</div>
         </div>
 
       </div>
@@ -80,8 +80,8 @@
          PLAYLISTS PAR MOOD
          ======================================== -->
     <section id="playlists-section">
-      <h2 class="section-title">🎧 Playlists par Mood</h2>
-      <p class="section-desc">Clique sur une carte pour lancer la playlist dans le lecteur ci-dessus</p>
+      <h2 class="section-title" data-t="playlists_title">🎧 Playlists par Mood</h2>
+      <p class="section-desc" data-t="playlists_desc">Clique sur une carte pour lancer la playlist dans le lecteur ci-dessus</p>
       <div id="playlists-grid" class="playlists-grid"></div>
     </section>
 
@@ -89,8 +89,8 @@
          RECHERCHE RAPIDE YOUTUBE
          ======================================== -->
     <section id="search-section">
-      <h2 class="section-title">🔍 Recherche Rapide YouTube</h2>
-      <p class="section-desc">Trouve des mix et playlists de tes artistes préférés</p>
+      <h2 class="section-title" data-t="search_title">🔍 Recherche Rapide YouTube</h2>
+      <p class="section-desc" data-t="search_desc">Trouve des mix et playlists de tes artistes préférés</p>
       <div class="search-links" id="search-links"></div>
     </section>
 
@@ -98,25 +98,27 @@
          MA PLAYLIST PERSO
          ======================================== -->
     <section id="my-playlist-section">
-      <h2 class="section-title">📋 Ma Playlist de Cours</h2>
-      <p class="section-desc">Sauvegarde tes URLs préférées (stockées dans ton navigateur)</p>
+      <h2 class="section-title" data-t="my_playlist_title">📋 Ma Playlist de Cours</h2>
+      <p class="section-desc" data-t="my_playlist_desc">Sauvegarde tes URLs préférées (stockées dans ton navigateur)</p>
       <div class="add-wrap">
-        <input type="text" id="add-url" class="url-input" placeholder="URL YouTube..." />
-        <input type="text" id="add-title" class="url-input" placeholder="Titre (optionnel)" />
-        <button class="url-btn" onclick="addToMyPlaylist()">+ Ajouter</button>
+        <input type="text" id="add-url" class="url-input" data-t-placeholder="my_playlist_url_ph" placeholder="URL YouTube..." />
+        <input type="text" id="add-title" class="url-input" data-t-placeholder="my_playlist_title_ph" placeholder="Titre (optionnel)" />
+        <button class="url-btn" onclick="addToMyPlaylist()" data-t="my_playlist_add">+ Ajouter</button>
       </div>
       <div id="my-playlist" class="my-playlist"></div>
     </section>
 
     <!-- FOOTER -->
     <footer>
-      <div class="footer-logo">🎵 Zone Total Sport</div>
-      <p>Musiques pour l'éducation physique et la santé</p>
-      <p style="margin-top:16px;font-size:0.75rem;opacity:0.4;">Zone Total Sport © 2026</p>
+      <div class="footer-logo" data-t="footer_logo">🎵 Zone Total Sport</div>
+      <p data-t="footer_text">Musiques pour l'éducation physique et la santé</p>
+      <p style="margin-top:16px;font-size:0.75rem;opacity:0.4;" data-t="footer_copy">Zone Total Sport © 2026</p>
     </footer>
 
   </div>
 
+  <script src="../i18n.js"></script>
+  <script src="lang/translations.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
