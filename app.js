@@ -254,15 +254,8 @@ function renderSearchLinks() {
 function openYTSearch(idx) {
   const s = SEARCH_LINKS[idx];
   if (!s) return;
-  // Play search directly in the iframe player
-  const iframe = document.getElementById('yt-iframe');
-  const labelEl = document.getElementById('now-playing');
-  if (iframe) {
-    iframe.src = `https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(s.query)}&autoplay=1&rel=0&modestbranding=1`;
-  }
-  if (labelEl) labelEl.textContent = `▶ ${s.label}`;
-  document.getElementById('player-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  showToast(`🎵 Recherche lancée : ${s.label}`);
+  window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(s.query)}`, '_blank');
+  showToast('🔍 Trouve une vidéo, copie son URL et colle-la dans le lecteur ci-haut!');
 }
 
 function showToast(msg) {
