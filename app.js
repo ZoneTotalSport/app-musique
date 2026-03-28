@@ -127,31 +127,35 @@ const PLAYLISTS = [
   }
 ];
 
-// ---- RECHERCHES RAPIDES YOUTUBE ----
-const SEARCH_LINKS = [
-  { icon: '🎧', label: 'Miss Monique — Mix', query: 'Miss Monique progressive house mix' },
-  { icon: '🎧', label: 'DJ Kallisto — Mix', query: 'DJ Kallisto mix' },
-  { icon: '🎧', label: 'Tchami — Mix', query: 'Tchami mix house' },
-  { icon: '🎧', label: 'Oliver Heldens — Mix', query: 'Oliver Heldens mix' },
-  { icon: '🏠', label: 'Future House Mix 2026', query: 'future house mix 2026 no copyright' },
-  { icon: '🌊', label: 'Deep House Mix', query: 'deep house mix long' },
-  { icon: '💪', label: 'Workout Music Mix', query: 'workout music mix high energy' },
-  { icon: '🏃', label: 'Running Music 160 BPM', query: 'running music 160 bpm mix' },
-  { icon: '💃', label: 'Dance Party Mix', query: 'dance party mix kids school' },
-  { icon: '🧘', label: 'Yoga & Relaxation', query: 'yoga relaxation music 1 hour' },
-  { icon: '🎤', label: 'Hip-Hop Clean Mix', query: 'hip hop clean mix workout' },
-  { icon: '⚡', label: 'EDM Festival Mix', query: 'edm festival mix 2026' },
-  { icon: '🎵', label: 'Pop Hits 2026', query: 'pop hits 2026 playlist' },
-  { icon: '🎻', label: 'Classique Épique', query: 'epic classical music workout' },
-  { icon: '🥁', label: 'Drum & Bass', query: 'drum and bass mix workout' },
-  { icon: '🌍', label: 'Afrobeats Mix', query: 'afrobeats mix dance' }
+// ---- RECHERCHES RAPIDES (vrais IDs YouTube) ----
+const QUICK_PLAYS = [
+  { icon: '🎧', label: 'Miss Monique — Yearmix Miami', videoId: '7MbyTJs3SAo' },
+  { icon: '🎧', label: 'DJ Kallisto — Progressive House Vol. 15', videoId: 'z2e_VKgTbZM' },
+  { icon: '🎧', label: 'Best of Tchami — Mixed by Royalce', videoId: 'JZ1CUIR0C4U' },
+  { icon: '🎧', label: 'Oliver Heldens — Heldeep Radio', videoId: 'RRvSxkaIJp4' },
+  { icon: '🏠', label: 'Future House — NCS', videoId: 'wpH46hSjxkU' },
+  { icon: '🌊', label: 'Deep House — 2h Underground Mix', videoId: 'RVHLyLIAbyU' },
+  { icon: '💪', label: 'Workout Music 2025 — EDM Fitness', videoId: 'neAGV0RMFV8' },
+  { icon: '🏃', label: 'Running Mix 160 BPM', videoId: 'lg8Iu16nV7c' },
+  { icon: '💃', label: 'Kids Dance Party — The Wiggles', videoId: '3EpyRFfwM4c' },
+  { icon: '🧘', label: 'Yoga & Relaxation — 1 heure', videoId: 'WKK84yEBZoo' },
+  { icon: '🎤', label: 'Hip-Hop Clean Workout', videoId: 'WJa6ve7vvjI' },
+  { icon: '⚡', label: 'EDM Party Club Mix 2025', videoId: 'LoY_vHm2otA' },
+  { icon: '🎆', label: 'Tiësto Live @ EDC Las Vegas', videoId: 'wFl_ttYwixk' },
+  { icon: '🎻', label: 'Classique Épique — Workout', videoId: 'sl9OmHy6c6o' },
+  { icon: '🥁', label: 'Drum & Bass Workout Mix', videoId: 'SYrjZ6voFCY' },
+  { icon: '🌍', label: 'Afrobeats Naija Mix', videoId: 'GZOV93NoXSI' },
+  { icon: '🔥', label: 'Hardwell — Tomorrowland 2025', videoId: 'b3esC6cJ7RQ' },
+  { icon: '⚡', label: 'Martin Garrix — Ultra Miami 2025', videoId: '3-ELBiUkUWc' },
+  { icon: '🎵', label: 'David Guetta — Tomorrowland 2025', videoId: 'cus3nFOjXb0' },
+  { icon: '🎧', label: 'Skrillex — Ultra Festival 2025', videoId: 'ni2pGkTPLDo' }
 ];
 
 // ---- INIT ----
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof initI18n === 'function') initI18n();
   renderPlaylists();
-  renderSearchLinks();
+  renderQuickPlays();
   loadMyPlaylist();
 
   // Enter key sur les inputs
@@ -239,23 +243,22 @@ function renderPlaylists() {
   `).join('');
 }
 
-// ---- RENDER SEARCH LINKS ----
-function renderSearchLinks() {
+// ---- RENDER QUICK PLAYS ----
+function renderQuickPlays() {
   const container = document.getElementById('search-links');
   if (!container) return;
 
-  container.innerHTML = SEARCH_LINKS.map((s, i) => `
-    <button class="search-link" onclick="openYTSearch(${i})">
+  container.innerHTML = QUICK_PLAYS.map((s, i) => `
+    <button class="search-link" onclick="playQuick(${i})">
       <span>${s.icon}</span> ${s.label}
     </button>
   `).join('');
 }
 
-function openYTSearch(idx) {
-  const s = SEARCH_LINKS[idx];
+function playQuick(idx) {
+  const s = QUICK_PLAYS[idx];
   if (!s) return;
-  window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(s.query)}`, '_blank');
-  showToast('🔍 Trouve une vidéo, copie son URL et colle-la dans le lecteur ci-haut!');
+  playVideo(s.videoId, s.label);
 }
 
 function showToast(msg) {
