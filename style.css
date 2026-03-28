@@ -62,10 +62,10 @@ header {
   gap: 12px;
 }
 .logo-title {
-  font-family: 'Fredoka', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.4rem;
   color: var(--primary);
+  letter-spacing: 1px;
 }
 .logo-sub {
   font-size: 0.7rem;
@@ -92,31 +92,44 @@ nav a:hover { color: var(--primary); border-color: var(--primary); }
 /* === HERO === */
 .hero {
   text-align: center;
-  padding: 60px 24px 40px;
+  padding: 50px 24px 40px;
   position: relative;
 }
-.hero-title-wrap {
-  display: inline-flex;
-  align-items: flex-end;
-  gap: 0;
+.hero-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 .hero-mascot-dj {
-  height: 260px;
-  vertical-align: bottom;
-  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.5));
-  margin-right: -20px;
+  height: 300px;
+  filter: drop-shadow(0 8px 30px rgba(0,0,0,0.5));
+  flex-shrink: 0;
+}
+.hero-text {
+  text-align: left;
 }
 .hero-title {
-  font-family: 'Fredoka', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 700;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.05;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
 }
-.hero-subtitle {
+.hero-subtitle-main {
+  font-family: 'Schoolbell', cursive;
+  font-size: 1.4rem;
+  color: var(--secondary);
+  margin-bottom: 6px;
+}
+.hero-subtitle-sub {
+  font-family: 'Schoolbell', cursive;
   font-size: 1rem;
   color: var(--text-muted);
   line-height: 1.6;
@@ -129,15 +142,16 @@ section {
   padding: 40px 24px;
 }
 .section-title {
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Luckiest Guy', cursive;
   font-size: 1.8rem;
-  font-weight: 700;
   margin-bottom: 8px;
   color: var(--text);
+  letter-spacing: 1px;
 }
 .section-desc {
+  font-family: 'Schoolbell', cursive;
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin-bottom: 28px;
 }
 
@@ -401,7 +415,9 @@ footer {
 /* === RESPONSIVE === */
 @media (max-width: 800px) {
   .player-layout { grid-template-columns: 1fr; }
-  .hero-mascot-dj { height: 140px; left: -30px; }
+  .hero-center { flex-direction: column; gap: 12px; }
+  .hero-mascot-dj { height: 180px; }
+  .hero-text { text-align: center; }
   .playlists-grid { grid-template-columns: 1fr; }
   .search-links { grid-template-columns: 1fr 1fr; }
 }
