@@ -19,7 +19,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Schoolbell', sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -211,7 +211,7 @@ section {
   color: var(--text);
   padding: 10px 14px;
   border-radius: 10px;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Schoolbell', sans-serif;
   font-size: 0.85rem;
   outline: none;
   transition: var(--transition);
@@ -383,7 +383,7 @@ section {
   font-weight: 700;
   cursor: pointer;
   transition: var(--transition);
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Schoolbell', sans-serif;
 }
 .my-track-btn:hover { background: rgba(0,229,255,0.2); }
 .my-track-btn.delete {
