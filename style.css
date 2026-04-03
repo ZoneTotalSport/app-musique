@@ -1,6 +1,6 @@
 /* ============================================
    ZONE TOTAL SPORT — APP MUSIQUE
-   Dark mode · Fredoka + Nunito
+   Dark mode · Luckiest Guy + Bangers + Schoolbell
    ============================================ */
 
 :root {
@@ -170,7 +170,7 @@ section {
 }
 .player-label {
   padding: 12px 20px;
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Bangers', cursive;
   font-weight: 600;
   font-size: 0.9rem;
   color: var(--primary);
@@ -197,7 +197,7 @@ section {
   border: 1px solid rgba(255,255,255,0.06);
 }
 .url-label {
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Bangers', cursive;
   font-weight: 600;
   font-size: 0.95rem;
   margin-bottom: 12px;
@@ -224,7 +224,7 @@ section {
   border: none;
   padding: 10px 20px;
   border-radius: 10px;
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Bangers', cursive;
   font-weight: 700;
   font-size: 0.85rem;
   cursor: pointer;
@@ -271,7 +271,7 @@ section {
   margin-bottom: 12px;
 }
 .playlist-card-title {
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Bangers', cursive;
   font-weight: 700;
   font-size: 1.15rem;
   margin-bottom: 6px;
@@ -402,7 +402,7 @@ footer {
   font-size: 0.82rem;
 }
 .footer-logo {
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Bangers', cursive;
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--primary);
