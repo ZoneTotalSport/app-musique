@@ -266,7 +266,7 @@ function showToast(msg) {
   if (!toast) {
     toast = document.createElement('div');
     toast.id = 'yt-toast';
-    toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(0,229,255,0.95);color:#111;padding:14px 28px;border-radius:12px;font-family:Fredoka,sans-serif;font-weight:700;font-size:0.95rem;z-index:9999;opacity:0;transition:opacity 0.3s;max-width:90vw;text-align:center;';
+    toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(0,229,255,0.95);color:#111;padding:14px 28px;border-radius:12px;font-family:Bangers,cursive;font-weight:700;font-size:0.95rem;z-index:9999;opacity:0;transition:opacity 0.3s;max-width:90vw;text-align:center;';
     document.body.appendChild(toast);
   }
   toast.textContent = msg;

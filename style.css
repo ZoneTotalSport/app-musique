@@ -1,6 +1,6 @@
 /* ============================================
    ZONE TOTAL SPORT — APP MUSIQUE
-   Dark mode · Fredoka + Nunito
+   Dark mode · Luckiest Guy + Bangers + Schoolbell
    ============================================ */
 
 :root {
@@ -19,7 +19,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Schoolbell', sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -32,7 +32,7 @@ body {
   inset: 0;
   z-index: 0;
   background: url('img/dj-roots-bg.png') center/cover no-repeat;
-  opacity: 0.50;
+  opacity: 1;
   filter: brightness(1.4) saturate(0.9);
   pointer-events: none;
 }
@@ -170,7 +170,7 @@ section {
 }
 .player-label {
   padding: 12px 20px;
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Bangers', cursive;
   font-weight: 600;
   font-size: 0.9rem;
   color: var(--primary);
@@ -197,7 +197,7 @@ section {
   border: 1px solid rgba(255,255,255,0.06);
 }
 .url-label {
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Bangers', cursive;
   font-weight: 600;
   font-size: 0.95rem;
   margin-bottom: 12px;
@@ -211,7 +211,7 @@ section {
   color: var(--text);
   padding: 10px 14px;
   border-radius: 10px;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Schoolbell', sans-serif;
   font-size: 0.85rem;
   outline: none;
   transition: var(--transition);
@@ -224,7 +224,7 @@ section {
   border: none;
   padding: 10px 20px;
   border-radius: 10px;
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Bangers', cursive;
   font-weight: 700;
   font-size: 0.85rem;
   cursor: pointer;
@@ -271,7 +271,7 @@ section {
   margin-bottom: 12px;
 }
 .playlist-card-title {
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Bangers', cursive;
   font-weight: 700;
   font-size: 1.15rem;
   margin-bottom: 6px;
@@ -383,7 +383,7 @@ section {
   font-weight: 700;
   cursor: pointer;
   transition: var(--transition);
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Schoolbell', sans-serif;
 }
 .my-track-btn:hover { background: rgba(0,229,255,0.2); }
 .my-track-btn.delete {
@@ -402,7 +402,7 @@ footer {
   font-size: 0.82rem;
 }
 .footer-logo {
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Bangers', cursive;
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--primary);
